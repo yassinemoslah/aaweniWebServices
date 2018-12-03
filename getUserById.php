@@ -11,8 +11,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$email = $_GET['email'];
-$sql = "select U.*, C.*, A.* from User U JOIN CordgeoUser C on U.Cordgeo_ID=C.Cord_ID JOIN Adresse A ON A.idUser=U.User_ID where User_ADRESS_MAIL=".$email;
+$id = $_GET['id'];
+$sql = "select U.*, C.*, A.* from User U JOIN CordgeoUser C on U.Cordgeo_ID=C.Cord_ID JOIN Adresse A ON A.idUser=U.User_ID where User_ID=".$id;
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
