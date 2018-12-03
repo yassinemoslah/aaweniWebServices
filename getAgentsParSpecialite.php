@@ -1,6 +1,6 @@
 <?php
 $servername = "localhost";
-$username = "root";
+$username = "yassine";
 $password = "";
 $dbname = "aaweni";
 
@@ -9,10 +9,11 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
-}
+} 
 
-$email = $_GET['email'];
-$sql = "select U.*, C.*, A.* from User U JOIN CordgeoUser C on U.Cordgeo_ID=C.Cord_ID JOIN Adresse A ON A.idUser=U.User_ID where User_ADRESS_MAIL=".$email;
+$return_arr = array();
+$specialite = $_GET['specialite'];
+$sql = "select U.*, C.*, A.* from User U JOIN CordgeoUser C on U.Cordgeo_ID=C.Cord_ID JOIN Adresse A ON A.idUser=U.User_ID WHERE User_specialite='".$specialite."'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -20,13 +21,13 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
       $row_array['id'] = $row['User_ID'];
       $row_array['email'] = $row['User_ADRESS_MAIL'];
-    	$row_array['cin'] = $row['User_CIN'];
-   		$row_array['nom'] = $row['User_NOM'];
-   		$row_array['password'] = $row['User_password'];
-   		$row_array['prenom'] = $row['User_PRENOM'];
-   		$row_array['role'] = $row['User_role'];
-   		$row_array['specialite'] = $row['User_specialite'];
-   		$row_array['photo'] = $row['User_picture'];
+      $row_array['cin'] = $row['User_CIN'];
+      $row_array['nom'] = $row['User_NOM'];
+      $row_array['password'] = $row['User_password'];
+      $row_array['prenom'] = $row['User_PRENOM'];
+      $row_array['role'] = $row['User_role'];
+      $row_array['specialite'] = $row['User_specialite'];
+      $row_array['photo'] = $row['User_picture'];
       $row_array['rating'] = $row['rating'];
       $row_array['numTel'] = $row['numTel'];
       $row_array['idCord'] = $row['Cordgeo_ID'];
@@ -38,8 +39,10 @@ if ($result->num_rows > 0) {
       $row_array['gouvernorat'] = $row['gouvernorat'];
       $row_array['code_postal'] = $row['code_postal'];
       $row_array['pays'] = $row['pays'];
+
+      array_push($return_arr,$row_array);
     }
-    echo json_encode($row_array);
+    echo json_encode($return_arr);
 } else {
     echo "0 results";
 }

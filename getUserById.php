@@ -1,6 +1,6 @@
 <?php
 $servername = "localhost";
-$username = "root";
+$username = "yassine";
 $password = "";
 $dbname = "aaweni";
 
@@ -9,10 +9,10 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
-}
+} 
 
-$email = $_GET['email'];
-$sql = "select U.*, C.*, A.* from User U JOIN CordgeoUser C on U.Cordgeo_ID=C.Cord_ID JOIN Adresse A ON A.idUser=U.User_ID where User_ADRESS_MAIL=".$email;
+$id = $_GET['id'];
+$sql = "select U.*, C.*, A.* from User U JOIN CordgeoUser C on U.Cordgeo_ID=C.Cord_ID JOIN Adresse A ON A.idUser=U.User_ID where User_ID=".$id;
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -31,7 +31,6 @@ if ($result->num_rows > 0) {
       $row_array['numTel'] = $row['numTel'];
       $row_array['idCord'] = $row['Cordgeo_ID'];
       $row_array['latitude'] = $row['Cord_Latitude'];
-      $row_array['longitude'] = $row['Cord_Longitude'];
       $row_array['idAdresse'] = $row['idAdresse'];
       $row_array['rue'] = $row['rue'];
       $row_array['ville'] = $row['ville'];

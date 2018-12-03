@@ -11,8 +11,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$specialite = $_GET['specialite'];
-$sql = "select U.*, C.*, A.* from User U JOIN CordgeoUser C on U.Cordgeo_ID=C.Cord_ID JOIN Adresse A ON A.idUser=U.User_ID WHERE U.User_specialite = '".$specialite."' order by U.rating desc";
+$idDemandeur = $_GET['idDemandeur'];
+$sql = "SELECT U.*, C.*, A.* from User U JOIN favoris F on U.User_ID = F.idAgent JOIN CordgeoUser C on U.Cordgeo_ID=C.Cord_ID JOIN Adresse A ON A.idUser=U.User_ID  WHERE idDemandeur=".$idDemandeur;
 $result = $conn->query($sql);
 $return_arr = array();
 if ($result->num_rows > 0) {

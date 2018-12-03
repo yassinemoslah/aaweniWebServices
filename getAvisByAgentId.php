@@ -11,8 +11,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$specialite = $_GET['specialite'];
-$sql = "select U.*, C.*, A.* from User U JOIN CordgeoUser C on U.Cordgeo_ID=C.Cord_ID JOIN Adresse A ON A.idUser=U.User_ID WHERE U.User_specialite = '".$specialite."' order by U.rating desc";
+$id = $_GET['id'];
+$sql = "SELECT U.*, A.* from User U JOIN Avis A on U.User_ID = A.client_User_ID WHERE A.agent_User_ID=".$id." order by A.Avis_ID desc";
 $result = $conn->query($sql);
 $return_arr = array();
 if ($result->num_rows > 0) {
@@ -28,16 +28,9 @@ if ($result->num_rows > 0) {
    		  $row_array['role'] = $row['User_role'];
    	  	$row_array['specialite'] = $row['User_specialite'];
    	   	$row_array['photo'] = $row['User_picture'];
-      	$row_array['rating'] = $row['rating'];
-      	$row_array['idCord'] = $row['Cord_ID'];
-      	$row_array['latitude'] = $row['Cord_Latitude'];
-      	$row_array['longitude'] = $row['Cord_Longitude'];
-      	$row_array['idAdresse'] = $row['idAdresse'];
-      	$row_array['rue'] = $row['rue'];
-      	$row_array['ville'] = $row['ville'];
-      	$row_array['gouvernorat'] = $row['gouvernorat'];
-       	$row_array['code_postal'] = $row['code_postal'];
-      	$row_array['pays'] = $row['pays'];
+      	$row_array['avis_id'] = $row['Avis_ID'];
+      	$row_array['details'] = $row['Avis_Details'];
+        $row_array['note'] = $row['Avis_NoteRating'];
       array_push($return_arr,$row_array);
     }
     echo json_encode($return_arr);
