@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 
 $return_arr = array();
 $id = $_GET['id'];
-$sql = "SELECT * FROM Demande WHERE clientD_User_ID =".$id;
+$sql = "SELECT * FROM Demande WHERE clientD_User_ID =".$id." order by Demande_ID desc";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
