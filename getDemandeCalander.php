@@ -13,15 +13,15 @@
      }
      
     $return_arr=array();
-    $specialite=$_GET['specialite'];
-    $sql ="select D.*,C.*,U.*,A.* from demande D join cordgeodemande C on D.Cordgeo_ID=C.Cord_ID join user U on U.User_ID=D.clientD_User_ID join adresse A on A.idDemande=D.Demande_ID WHERE D.Dem_Etat='0' and D.idAgent='0' and D.Dem_Type=".$specialite;
+    $iduser=$_GET['iduser'];
+    $sql ="select D.*,C.*,U.*,A.*, O.* from demande D join cordgeodemande C on D.Cordgeo_ID=C.Cord_ID join user U on U.User_ID=D.clientD_User_ID join adresse A on A.idDemande=D.Demande_ID join offre_agent O on O.Demande_ID=D.Demande_ID WHERE O.Etat='1' and O.Agent_ID=".$iduser;
      $result=$conn->query($sql);
      
      if($result->num_rows>0)
     {
     	while($row=$result->fetch_assoc())
     	{
-    
+   
    	    $row_array['id']=$row['Demande_ID'];
     	$row_array['etat']=$row['Dem_Etat'];
     	$row_array['panne']=$row['Dem_Panne'];
