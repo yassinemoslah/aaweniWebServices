@@ -11,14 +11,21 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$email = $_GET['email'];
-$sql = "select U.*, C.*, A.* from User U JOIN CordgeoUser C on U.Cordgeo_ID=C.Cord_ID JOIN Adresse A ON A.idUser=U.User_ID where User_ADRESS_MAIL=".$email;
+$return_arr = array();
+$sql = "SELECT D.*, A.*, U.*, C.* FROM Demande D JOIN Adresse A on D.Demande_ID=A.idDemande JOIN User U on D.clientD_User_ID=U.User_ID JOIN CordgeoDemande C on C.Cord_ID=D.Cordgeo_ID WHERE D.urgente=1 and D.Dem_Etat=0";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-      $row_array['id'] = $row['User_ID'];
+      $row_array['idDemande'] = $row['Demande_ID'];
+      $row_array['dateDemande'] = $row['Dem_Date'];
+    	$row_array['etatDemande'] = $row['Dem_Etat'];
+   		$row_array['panne'] = $row['Dem_Panne'];
+   		$row_array['type'] = $row['Dem_Type'];
+   		$row_array['photoDemande'] = $row['Dem_picture'];
+   		$row_array['titreDemande'] = $row['Dem_titre'];
+      $row_array['idUser'] = $row['User_ID'];
       $row_array['email'] = $row['User_ADRESS_MAIL'];
       $row_array['cin'] = $row['User_CIN'];
       $row_array['nom'] = $row['User_NOM'];
@@ -38,8 +45,9 @@ if ($result->num_rows > 0) {
       $row_array['gouvernorat'] = $row['gouvernorat'];
       $row_array['code_postal'] = $row['code_postal'];
       $row_array['pays'] = $row['pays'];
+      array_push($return_arr,$row_array);
     }
-    echo json_encode($row_array);
+    echo json_encode($return_arr);
 } else {
     echo "0 results";
 }
