@@ -1,6 +1,6 @@
      <?php
      $servername ="localhost";
-     $username = "root";
+     $username = "yassine";
      $password ="";
      $dbname = "aaweni";
       
@@ -14,7 +14,7 @@
      
     $return_arr=array();
     $specialite=$_GET['specialite'];
-    $sql ="select D.*,C.*,U.*,A.* from demande D join cordgeodemande C on D.Cordgeo_ID=C.Cord_ID join user U on U.User_ID=D.clientD_User_ID join adresse A on A.idDemande=D.Demande_ID WHERE D.Dem_Etat='0' and D.idAgent='0' and D.Dem_Type=".$specialite;
+    $sql ="select D.*,C.*,U.*,A.* from demande D join cordgeodemande C on D.Cordgeo_ID=C.Cord_ID join user U on U.User_ID=D.clientD_User_ID join adresse A on A.idDemande=D.Demande_ID WHERE D.Dem_Etat='0' and D.idAgent='0' and D.Dem_Type=".$specialite." order by D.Demande_ID desc";
      $result=$conn->query($sql);
      
      if($result->num_rows>0)
