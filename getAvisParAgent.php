@@ -1,6 +1,6 @@
      <?php
      $servername ="localhost";
-     $username = "root";
+     $username = "yassine";
      $password ="";
      $dbname = "aaweni";
       
@@ -14,7 +14,7 @@
      
     $return_arr=array();
     $idAgent=$_GET['idAgent'];
-    $sql ="select  A.*,U.* from avis A join user U on A.client_User_ID=U.User_ID  WHERE A.agent_User_ID=".$idAgent;
+    $sql ="select  A.*,U.* from avis A join user U on A.client_User_ID=U.User_ID  WHERE A.agent_User_ID=".$idAgent." order by A.Avis_ID desc";
     $result=$conn->query($sql);
      
      if($result->num_rows>0)

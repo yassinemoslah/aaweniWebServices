@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 
 $return_arr = array();
 $id = $_GET['id'];
-$sql = "select U.User_NOM, U.User_PRENOM, U.User_picture, O.* from Offre_Agent O JOIN User U on O.Agent_ID=U.User_ID WHERE O.Demande_ID=".$id." and O.Etat='accepté'";
+$sql = "select U.User_NOM, U.User_PRENOM, U.User_picture, O.* from Offre_Agent O JOIN User U on O.Agent_ID=U.User_ID WHERE O.Demande_ID=".$id." and O.Etat='1'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

@@ -1,6 +1,6 @@
 <?php
 $servername = "localhost";
-$username = "root";
+$username = "yassine";
 $password = "";
 $dbname = "aaweni";
 
@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 $return_arr = array();
 $id = $_GET['id'];
 
-$sql = "select O.*,D.* from offre_agent O join demande D on D.Demande_ID=O.Demande_ID WHERE O.Agent_ID=".$id;
+$sql = "select O.*,D.* from offre_agent O join demande D on D.Demande_ID=O.Demande_ID WHERE O.Agent_ID=".$id." order by O.Offre_Agent_ID desc";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
