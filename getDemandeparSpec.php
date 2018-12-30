@@ -1,6 +1,6 @@
      <?php
      $servername ="localhost";
-     $username = "yassine";
+     $username = "root";
      $password ="";
      $dbname = "aaweni";
       
@@ -21,7 +21,7 @@
     {
     	while($row=$result->fetch_assoc())
     	{
-    
+   
    	    $row_array['id']=$row['Demande_ID'];
     	$row_array['etat']=$row['Dem_Etat'];
     	$row_array['panne']=$row['Dem_Panne'];
