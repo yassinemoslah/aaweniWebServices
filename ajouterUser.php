@@ -32,7 +32,7 @@
     }
 
 
-    $query="INSERT INTO User(User_ADRESS_MAIL, numTel, User_CIN, User_NOM, User_password, User_PRENOM, User_role, User_specialite, Cordgeo_ID, User_picture) values ('".$input->adresseMail."','".$input->numTel."','".$input->cin."','".$input->nom."','".$input->password."','".$input->prenom."','".$input->role."','".$input->specialite."',".$row_array['id'].",'".$input->picture."');";
+    $query="INSERT INTO User(User_ADRESS_MAIL, numTel, User_CIN, User_NOM, User_password, User_PRENOM, User_role, User_specialite, Cordgeo_ID, User_picture, etat, codeVerification) values ('".$input->adresseMail."','".$input->numTel."','".$input->cin."','".$input->nom."','".$input->password."','".$input->prenom."','".$input->role."','".$input->specialite."',".$row_array['id'].",'".$input->picture."',".$input->etat.",".$input->codeVerification.");";
 
 
         $conn->query($query);  

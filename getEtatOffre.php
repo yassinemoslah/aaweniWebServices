@@ -31,7 +31,7 @@
      }
    echo json_encode($return_arr);
         }else{
-          echo "0 result";
+          echo "0 results";
         }
         $conn->close();
         ?>

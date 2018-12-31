@@ -38,6 +38,8 @@ if ($result->num_rows > 0) {
       $row_array['gouvernorat'] = $row['gouvernorat'];
       $row_array['code_postal'] = $row['code_postal'];
       $row_array['pays'] = $row['pays'];
+      $row_array['etat'] = $row['etat'];
+      $row_array['code'] = $row['codeVerification'];
     }
     echo json_encode($row_array);
 } else {
