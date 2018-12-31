@@ -1,6 +1,6 @@
 <?php
 $servername = "localhost";
-$username = "yassine";
+$username = "root";
 $password = "";
 $dbname = "aaweni";
 
@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 } 
 
 $return_arr = array();
-$specialite = $_GET['specialite'];
+
 $sql = "select U.*, C.*, A.* from User U JOIN CordgeoUser C on U.Cordgeo_ID=C.Cord_ID JOIN Adresse A ON A.idUser=U.User_ID WHERE User_role='Agent'";
 $result = $conn->query($sql);
 
