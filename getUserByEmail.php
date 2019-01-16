@@ -1,6 +1,6 @@
 <?php
 $servername = "localhost";
-$username = "root";
+$username = "yassine";
 $password = "";
 $dbname = "aaweni";
 
@@ -40,6 +40,7 @@ if ($result->num_rows > 0) {
       $row_array['pays'] = $row['pays'];
       $row_array['etat'] = $row['etat'];
       $row_array['code'] = $row['codeVerification'];
+      $row_array['grade'] = $row['grade'];
     }
     echo json_encode($row_array);
 } else {

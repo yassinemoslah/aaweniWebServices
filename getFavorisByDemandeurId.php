@@ -1,6 +1,6 @@
 <?php
 $servername = "localhost";
-$username = "root";
+$username = "yassine";
 $password = "";
 $dbname = "aaweni";
 
@@ -38,6 +38,7 @@ if ($result->num_rows > 0) {
       	$row_array['gouvernorat'] = $row['gouvernorat'];
        	$row_array['code_postal'] = $row['code_postal'];
       	$row_array['pays'] = $row['pays'];
+        $row_array['grade'] = $row['grade'];
       array_push($return_arr,$row_array);
     }
     echo json_encode($return_arr);
